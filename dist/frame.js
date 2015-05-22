@@ -1,5 +1,7 @@
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var React = require('react');
 
 function addLink(head, href) {
@@ -14,10 +16,12 @@ module.exports = React.createClass({
   displayName: 'Frame',
 
   render: function render() {
-    return React.createElement('iframe', { className: this.props.className, id: this.props.id });
+    this._children = this.props.children;
+    delete this.props.children; // render children manually
+    return React.createElement('iframe', _extends({}, this.props, { onLoad: this.renderFrame }));
   },
 
-  componentDidMount: function componentDidMount() {
+  renderFrame: function renderFrame() {
     var frame = this.getDOMNode();
     var head = frame.contentDocument.head;
     var body = frame.contentDocument.body;
@@ -29,13 +33,15 @@ module.exports = React.createClass({
       });
     }
 
-    React.render(this.props.children, body);
+    React.render(this._children, body);
   },
 
-  componentDidUpdate: function componentDidUpdate() {
-    var frame = this.getDOMNode();
-    var body = frame.contentDocument.body;
-    React.render(this.props.children, body);
+  componentDidMount: function componentDidMount() {
+    this.renderFrame();
+  },
+
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    React.render(nextProps.children, this.getDOMNode().contentDocument.body);
   },
 
   componentWillUnmount: function componentWillUnmount() {
