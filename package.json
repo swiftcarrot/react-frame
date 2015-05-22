@@ -1,7 +1,7 @@
 {
   "name": "react-frame",
   "version": "1.0.0",
-  "description": "React components within an iframe for separated css styling",
+  "description": "React components within an iframe for isolated css styling",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -30,5 +30,8 @@
     "babel-loader": "^5.1.2",
     "node-libs-browser": "^0.5.0",
     "webpack": "^1.9.7"
+  },
+  "dependencies": {
+    "react": "^0.13.3"
   }
 }

@@ -1,5 +1,5 @@
 # react-frame
-React components within an iframe for separated css styling
+React components within an iframe for isolated css styling
 ## Installation
 ``` sh
 npm install react-frame --save
@@ -10,5 +10,4 @@ npm install react-frame --save
 <Frame styleSheets={['/example/frame.css']}>
   <div className="title">Parturient Ipsum Cursus Purus Justo</div>
 </Frame>
-
 ```
