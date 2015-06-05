@@ -4,14 +4,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 var React = require('react');
 
-function addLink(head, href) {
-  var link = document.createElement('link');
-  link.setAttribute('rel', 'stylesheet');
-  link.setAttribute('type', 'text/css');
-  link.setAttribute('href', href);
-  head.appendChild(link);
-}
-
 module.exports = React.createClass({
   displayName: 'Frame',
 
@@ -21,19 +13,48 @@ module.exports = React.createClass({
     return React.createElement('iframe', _extends({}, this.props, { onLoad: this.renderFrame }));
   },
 
-  renderFrame: function renderFrame() {
-    var frame = this.getDOMNode();
-    var head = frame.contentDocument.head;
-    var body = frame.contentDocument.body;
+  updateStylesheets: function updateStylesheets(styleSheets) {
+    var _this = this;
 
-    var styleSheets = this.props.styleSheets;
-    if (styleSheets && styleSheets.length) {
-      styleSheets.forEach(function (link) {
-        addLink(head, link);
-      });
+    var links = this.head.querySelectorAll('link');
+    for (var i = 0, l = links.length; i < l; i++) {
+      var link = links[i];
+      link.parentNode.removeChild(link);
     }
 
-    React.render(this._children, body);
+    if (styleSheets && styleSheets.length) {
+      styleSheets.forEach(function (href) {
+        var link = document.createElement('link');
+        link.setAttribute('rel', 'stylesheet');
+        link.setAttribute('type', 'text/css');
+        link.setAttribute('href', href);
+        _this.head.appendChild(link);
+      });
+    }
+  },
+
+  updateStyles: function updateStyles(css) {
+    if (!css) {
+      return;
+    }if (!this.styleDom) {
+      var dom = document.createElement('style');
+      dom.type = 'text/css';
+      this.head.appendChild(dom);
+      this.styleDom = dom;
+    }
+
+    this.styleDom.innerHTML = css;
+  },
+
+  renderFrame: function renderFrame() {
+    var frame = this.getDOMNode();
+    this.head = frame.contentDocument.head;
+    this.body = frame.contentDocument.body;
+
+    this.updateStylesheets(this.props.styleSheets);
+    this.updateStyles(this.props.css);
+
+    React.render(this._children, this.body);
   },
 
   componentDidMount: function componentDidMount() {
@@ -41,6 +62,10 @@ module.exports = React.createClass({
   },
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    if (nextProps.styleSheets.join('') !== this.props.styleSheets.join('')) this.updateStylesheets(nextProps.styleSheets);
+
+    if (nextProps.css !== this.props.css) this.updateStyles(nextProps.css);
+
     React.render(nextProps.children, this.getDOMNode().contentDocument.body);
   },
 
