@@ -16,7 +16,7 @@
     "iframe",
     "styling"
   ],
-  "author": "wang zuo <wzuoadjusted@gmail.com> (https://twitter.com/wang_zuo)",
+  "author": "Wang Zuo",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/pqx/react-frame/issues"
@@ -30,8 +30,5 @@
     "babel-loader": "^5.1.2",
     "node-libs-browser": "^0.5.0",
     "webpack": "^1.9.7"
-  },
-  "dependencies": {
-    "react": "^0.13.3"
   }
 }
