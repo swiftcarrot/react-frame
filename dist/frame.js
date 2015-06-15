@@ -33,17 +33,24 @@ module.exports = React.createClass({
     }
   },
 
-  updateStyles: function updateStyles(css) {
-    if (!css) {
-      return;
-    }if (!this.styleDom) {
-      var dom = document.createElement('style');
-      dom.type = 'text/css';
-      this.head.appendChild(dom);
-      this.styleDom = dom;
+  updateCss: function updateCss(css) {
+    if (!this.styleEl) {
+      var el = document.createElement('style');
+      el.type = 'text/css';
+      this.head.appendChild(el);
+      this.styleEl = el;
     }
 
-    this.styleDom.innerHTML = css;
+    var el = this.styleEl;
+
+    if (el.styleSheet) {
+      el.styleSheet.cssText = css;
+    } else {
+      var cssNode = document.createTextNode(css);
+      if (this.cssNode) el.removeChild(this.cssNode);
+      el.appendChild(cssNode);
+      this.cssNode = cssNode;
+    }
   },
 
   renderFrame: function renderFrame() {
@@ -52,19 +59,23 @@ module.exports = React.createClass({
     this.body = frame.contentDocument.body;
 
     this.updateStylesheets(this.props.styleSheets);
-    this.updateStyles(this.props.css);
+    this.updateCss(this.props.css);
 
     React.render(this._children, this.body);
   },
 
   componentDidMount: function componentDidMount() {
-    this.renderFrame();
+    setTimeout(this.renderFrame, 0);
   },
 
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
-    if (nextProps.styleSheets.join('') !== this.props.styleSheets.join('')) this.updateStylesheets(nextProps.styleSheets);
+    if (nextProps.styleSheets.join('') !== this.props.styleSheets.join('')) {
+      this.updateStylesheets(nextProps.styleSheets);
+    }
 
-    if (nextProps.css !== this.props.css) this.updateStyles(nextProps.css);
+    if (nextProps.css !== this.props.css) {
+      this.updateCss(nextProps.css);
+    }
 
     React.render(nextProps.children, this.getDOMNode().contentDocument.body);
   },
