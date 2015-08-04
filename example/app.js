@@ -51,14 +51,17 @@ var App = React.createClass({
           id="iframe"
           styleSheets={styleSheets}
           css={css}>
+
           <div className="title">{this.state.text}</div>
+
         </Frame>
 
         <div>
           <textarea
             style={{width: 400}}
             value={this.state.text}
-            onChange={this.handleChange}/>
+            onChange={this.handleChange}
+          />
         </div>
 
         <div>
@@ -66,14 +69,16 @@ var App = React.createClass({
           <input
             type="text"
             value={this.state.background}
-            onChange={this.handleBackgroundChange}/>
+            onChange={this.handleBackgroundChange}
+          />
         </div>
 
         <div>
           <input
             type="checkbox"
             checked={this.state.frame1}
-            onChange={this.toggleStyle.bind(null, 'frame1')}/>
+            onChange={this.toggleStyle.bind(null, 'frame1')}
+          />
           <label>frame1.css</label>
         </div>
 
@@ -81,7 +86,8 @@ var App = React.createClass({
           <input
             type="checkbox"
             checked={this.state.frame2}
-            onChange={this.toggleStyle.bind(null, 'frame2')}/>
+            onChange={this.toggleStyle.bind(null, 'frame2')}
+          />
           <label>frame2.css</label>
         </div>
       </div>
@@ -89,4 +95,4 @@ var App = React.createClass({
   }
 });
 
-React.render(<App/>, document.body);
+React.render(<App/>, document.getElementById('app'));

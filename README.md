@@ -6,12 +6,18 @@ npm install react-frame --save
 
 ```
 ### Demo
-[https://pqx.github.io/react-frame/](https://pqx.github.io/react-frame/)
+[https://pqx.github.io/react-frame/example](https://pqx.github.io/react-frame/example)
 ### Usage
 ``` javascript
 <Frame
   styleSheets={['frame1.css']}
   css={'body{background-color:#eee;}'}>
-  <div className="title">Parturient Ipsum Cursus Purus Justo</div>
+
+  <div className="title">
+    Parturient Ipsum Cursus Purus Justo
+  </div>
+
 </Frame>
 ```
+### License
+MIT
