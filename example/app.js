@@ -45,6 +45,7 @@ var App = React.createClass({
 
     return (
       <div>
+        <h1>react-frame</h1>
         <div className="title">{this.state.text}</div>
         <Frame
           className="iframe"
