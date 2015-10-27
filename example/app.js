@@ -57,7 +57,6 @@ var App = React.createClass({
           css={css}>
 
           <div className="title">{this.state.text}</div>
-
         </Frame>
 
         <div>
