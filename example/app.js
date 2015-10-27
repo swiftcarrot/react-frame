@@ -1,8 +1,11 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Frame = require('../lib/frame');
 var jcss = require('../lib/json-css');
 
 var App = React.createClass({
+  displayName: 'App',
+
   getInitialState() {
     return {
       text: 'Parturient Ipsum Cursus Purus Justo',
@@ -44,7 +47,7 @@ var App = React.createClass({
     var css = this.getCss();
 
     return (
-      <div>
+      <div className="app">
         <h1>react-frame</h1>
         <div className="title">{this.state.text}</div>
         <Frame
@@ -96,4 +99,4 @@ var App = React.createClass({
   }
 });
 
-React.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));
