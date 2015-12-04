@@ -8,7 +8,7 @@
     "deploy": "github-pages-deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "gith-pages-deploy": {
+  "github-pages-deploy": {
     "src": "example"
   },
   "repository": {
