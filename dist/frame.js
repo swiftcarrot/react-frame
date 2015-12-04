@@ -2,15 +2,18 @@
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var blacklist = require('blacklist');
 var React = require('react');
+var ReactDOM = require('react-dom');
 
 module.exports = React.createClass({
   displayName: 'Frame',
 
   render: function render() {
     this._children = this.props.children;
-    delete this.props.children; // render children manually
-    return React.createElement('iframe', _extends({}, this.props, { onLoad: this.renderFrame }));
+    // render children manually
+    var props = blacklist(this.props, 'children');
+    return React.createElement('iframe', _extends({}, props, { onLoad: this.renderFrame }));
   },
 
   updateStylesheets: function updateStylesheets(styleSheets) {
@@ -54,14 +57,14 @@ module.exports = React.createClass({
   },
 
   renderFrame: function renderFrame() {
-    var frame = this.getDOMNode();
+    var frame = ReactDOM.findDOMNode(this);
     this.head = frame.contentDocument.head;
     this.body = frame.contentDocument.body;
 
     this.updateStylesheets(this.props.styleSheets);
     this.updateCss(this.props.css);
 
-    React.render(this._children, this.body);
+    ReactDOM.render(this._children, this.body);
   },
 
   componentDidMount: function componentDidMount() {
@@ -77,10 +80,11 @@ module.exports = React.createClass({
       this.updateCss(nextProps.css);
     }
 
-    React.render(nextProps.children, this.getDOMNode().contentDocument.body);
+    var frame = ReactDOM.findDOMNode(this);
+    ReactDOM.render(nextProps.children, frame.contentDocument.body);
   },
 
   componentWillUnmount: function componentWillUnmount() {
-    React.unmountComponentAtNode(this.getDOMNode().contentDocument.body);
+    React.unmountComponentAtNode(ReactDOM.findDOMNode(this).contentDocument.body);
   }
 });
