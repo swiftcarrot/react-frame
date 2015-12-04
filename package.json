@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server -c --port=7788",
+    "deploy": "github-pages-deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "gith-pages-deploy": {
+    "src": "example"
   },
   "repository": {
     "type": "git",
@@ -30,6 +34,7 @@
   "devDependencies": {
     "babel-core": "^6.3.2",
     "babel-loader": "^6.2.0",
+    "github-pages-deploy": "0.0.3",
     "webpack": "^1.12.9"
   },
   "dependencies": {
