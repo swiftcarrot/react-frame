@@ -79,6 +79,6 @@ module.exports = React.createClass({
     ReactDOM.render(nextProps.children, frame.contentDocument.body);
   },
   componentWillUnmount: function componentWillUnmount() {
-    React.unmountComponentAtNode(ReactDOM.findDOMNode(this).contentDocument.body);
+    ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this).contentDocument.body);
   }
 });
