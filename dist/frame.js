@@ -12,7 +12,7 @@ module.exports = React.createClass({
   render: function render() {
     this._children = this.props.children;
     // render children manually
-    var props = blacklist(this.props, 'children');
+    var props = blacklist(this.props, 'children', 'styleSheets', 'css');
     return React.createElement('iframe', _extends({}, props, { onLoad: this.renderFrame }));
   },
   updateStylesheets: function updateStylesheets(styleSheets) {
@@ -57,11 +57,14 @@ module.exports = React.createClass({
     var frame = ReactDOM.findDOMNode(this);
     this.head = frame.contentDocument.head;
     this.body = frame.contentDocument.body;
+    var root = document.createElement('div');
+    root.setAttribute('id', 'root');
+    this.body.appendChild(root);
 
     this.updateStylesheets(this.props.styleSheets);
     this.updateCss(this.props.css);
 
-    ReactDOM.render(this._children, this.body);
+    ReactDOM.render(this._children, root);
   },
   componentDidMount: function componentDidMount() {
     setTimeout(this.renderFrame, 0);
@@ -76,9 +79,9 @@ module.exports = React.createClass({
     }
 
     var frame = ReactDOM.findDOMNode(this);
-    ReactDOM.render(nextProps.children, frame.contentDocument.body);
+    ReactDOM.render(nextProps.children, frame.contentDocument.getElementById('root'));
   },
   componentWillUnmount: function componentWillUnmount() {
-    ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this).contentDocument.body);
+    ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this).contentDocument.getElementById('root'));
   }
 });
