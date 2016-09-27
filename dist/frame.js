@@ -66,9 +66,6 @@ module.exports = React.createClass({
 
     ReactDOM.render(this._children, root);
   },
-  componentDidMount: function componentDidMount() {
-    setTimeout(this.renderFrame, 0);
-  },
   componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
     if (nextProps.styleSheets.join('') !== this.props.styleSheets.join('')) {
       this.updateStylesheets(nextProps.styleSheets);
