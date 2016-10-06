@@ -39,7 +39,7 @@
     "babel-preset-react": "^6.1.18",
     "github-pages-deploy": "0.0.3",
     "webpack": "^1.12.9",
-    "webpack-dev-server": "^1.14.0"
+    "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
     "blacklist": "^1.1.2"
