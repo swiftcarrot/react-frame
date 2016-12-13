@@ -1,6 +1,6 @@
 {
   "name": "react-frame",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "React components within an iframe for isolated css styling",
   "main": "index.js",
   "scripts": {
