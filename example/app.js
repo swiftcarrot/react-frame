@@ -16,11 +16,11 @@ var App = React.createClass({
   },
 
   handleChange(e) {
-    this.setState({text: e.target.value});
+    this.setState({ text: e.target.value });
   },
 
   handleBackgroundChange(e) {
-    this.setState({background: e.target.value});
+    this.setState({ background: e.target.value });
   },
 
   toggleStyle(frame) {
@@ -30,15 +30,13 @@ var App = React.createClass({
   },
 
   getCss() {
-    return jcss([
-      {'body': {'background-color': this.state.background}}
-    ]);
+    return jcss([{ body: { 'background-color': this.state.background } }]);
   },
 
   getStyleSheets() {
     var s = [];
-    if(this.state.frame1) s.push('frame1.css');
-    if(this.state.frame2) s.push('frame2.css');
+    if (this.state.frame1) s.push('frame1.css');
+    if (this.state.frame2) s.push('frame2.css');
     return s;
   },
 
@@ -49,19 +47,23 @@ var App = React.createClass({
     return (
       <div className="app">
         <h1>react-frame</h1>
-        <div className="title">{this.state.text}</div>
+        <div className="title">
+          {this.state.text}
+        </div>
         <Frame
           className="iframe"
           id="iframe"
           styleSheets={styleSheets}
-          css={css}>
-
-          <div className="title">{this.state.text}</div>
+          css={css}
+        >
+          <div className="title">
+            {this.state.text}
+          </div>
         </Frame>
 
         <div>
           <textarea
-            style={{width: 400}}
+            style={{ width: 400 }}
             value={this.state.text}
             onChange={this.handleChange}
           />
@@ -94,8 +96,8 @@ var App = React.createClass({
           <label>frame2.css</label>
         </div>
       </div>
-    )
+    );
   }
 });
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));

@@ -3,7 +3,7 @@ module.exports = {
   output: {
     path: __dirname + '/example',
     filename: 'bundle.js',
-    publicPath: '/example/',
+    publicPath: '/example/'
   },
   module: {
     loaders: [
@@ -11,7 +11,7 @@ module.exports = {
     ]
   },
   externals: {
-    'react': 'React',
+    react: 'React',
     'react-dom': 'ReactDOM'
   },
   devtool: 'source-map'
