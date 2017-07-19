@@ -1,67 +1,63 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Frame = require('../lib/frame');
-var jcss = require('../lib/json-css');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const Frame = require('../lib/frame');
+const jcss = require('./json-css');
 
-var App = React.createClass({
-  displayName: 'App',
+class App extends React.Component {
+  state = {
+    text: 'Parturient Ipsum Cursus Purus Justo',
+    background: '#aaa',
+    frame1: true,
+    frame2: false
+  };
 
-  getInitialState() {
-    return {
-      text: 'Parturient Ipsum Cursus Purus Justo',
-      background: '#aaa',
-      frame1: true,
-      frame2: false
-    };
-  },
+  handleChange = e => {
+    this.setState({ text: e.target.value });
+  };
 
-  handleChange(e) {
-    this.setState({text: e.target.value});
-  },
+  handleBackgroundChange = e => {
+    this.setState({ background: e.target.value });
+  };
 
-  handleBackgroundChange(e) {
-    this.setState({background: e.target.value});
-  },
+  toggleStyle = frame => {
+    this.setState({ ...this.state, [frame]: !this.state[frame] });
+  };
 
-  toggleStyle(frame) {
-    var s = {};
-    s[frame] = !this.state[frame];
-    this.setState(s);
-  },
+  getCss = () => {
+    return jcss([{ body: { 'background-color': this.state.background } }]);
+  };
 
-  getCss() {
-    return jcss([
-      {'body': {'background-color': this.state.background}}
-    ]);
-  },
-
-  getStyleSheets() {
-    var s = [];
-    if(this.state.frame1) s.push('frame1.css');
-    if(this.state.frame2) s.push('frame2.css');
+  getStyleSheets = () => {
+    const s = [];
+    if (this.state.frame1) s.push('frame1.css');
+    if (this.state.frame2) s.push('frame2.css');
     return s;
-  },
+  };
 
   render() {
-    var styleSheets = this.getStyleSheets();
-    var css = this.getCss();
+    const styleSheets = this.getStyleSheets();
+    const css = this.getCss();
 
     return (
       <div className="app">
         <h1>react-frame</h1>
-        <div className="title">{this.state.text}</div>
+        <div className="title">
+          {this.state.text}
+        </div>
         <Frame
           className="iframe"
           id="iframe"
           styleSheets={styleSheets}
-          css={css}>
-
-          <div className="title">{this.state.text}</div>
+          css={css}
+        >
+          <div className="title">
+            {this.state.text}
+          </div>
         </Frame>
 
         <div>
           <textarea
-            style={{width: 400}}
+            style={{ width: 400 }}
             value={this.state.text}
             onChange={this.handleChange}
           />
@@ -94,8 +90,8 @@ var App = React.createClass({
           <label>frame2.css</label>
         </div>
       </div>
-    )
+    );
   }
-});
+}
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
