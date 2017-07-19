@@ -92,6 +92,8 @@ var Frame = function (_React$Component) {
   }, {
     key: 'renderFrame',
     value: function renderFrame() {
+      var _this3 = this;
+
       var _props = this.props,
           styleSheets = _props.styleSheets,
           css = _props.css;
@@ -106,7 +108,9 @@ var Frame = function (_React$Component) {
       this.body.appendChild(root);
 
       this.updateStylesheets(styleSheets);
-      this.updateCss(css);
+      setTimeout(function () {
+        _this3.updateCss(css);
+      }, 0);
 
       ReactDOM.render(this._children, root);
     }
