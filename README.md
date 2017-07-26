@@ -1,5 +1,5 @@
 # react-frame
-![https://www.npmjs.com/package/react-frame](https://img.shields.io/npm/v/react-frame.svg)
+[![npm](https://img.shields.io/npm/v/react-frame.svg)](https://www.npmjs.com/package/react-frame)
 
 React components within an iframe for isolated css styling
 
