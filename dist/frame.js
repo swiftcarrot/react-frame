@@ -35,7 +35,8 @@ var Frame = function (_React$Component) {
       }
 
       var frame = ReactDOM.findDOMNode(this);
-      ReactDOM.render(nextProps.children, frame.contentDocument.getElementById('root'));
+      var root = frame.contentDocument.getElementById('root');
+      if (root) ReactDOM.render(nextProps.children, root);
     }
   }, {
     key: 'componentDidMount',
