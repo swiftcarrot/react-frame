@@ -2,15 +2,15 @@
   "name": "react-frame",
   "version": "2.1.0",
   "description": "React components within an iframe for isolated css styling",
-  "main": "index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "start": "webpack-dev-server -c --port=8080",
-    "build": "make",
-    "deploy": "npm run build && github-pages-deploy",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "github-pages-deploy": {
-    "src": "example"
+    "build": "NODE_ENV=production rollup -c",
+    "test": "jest --coverage",
+    "prepublishOnly": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
@@ -29,23 +29,28 @@
   },
   "homepage": "https://github.com/pqx/react-frame#readme",
   "peerDependencies": {
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1"
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.20.0",
-    "babel-loader": "^6.2.9",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-0": "^6.24.1",
-    "github-pages-deploy": "^0.0.3",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "regenerator-runtime": "^0.13.1",
+    "rollup": "^1.1.2",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0"
   },
   "dependencies": {
-    "blacklist": "^1.1.4"
+    "@babel/runtime": "^7.3.1"
   }
 }

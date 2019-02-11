@@ -1,8 +1,7 @@
-const blacklist = require('blacklist');
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-class Frame extends React.Component {
+class Frame extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.styleSheets.join('') !== this.props.styleSheets.join('')) {
       this.updateStylesheets(nextProps.styleSheets);
@@ -88,10 +87,9 @@ class Frame extends React.Component {
 
   render() {
     this._children = this.props.children;
-    // render children manually
-    const props = blacklist(this.props, 'children', 'styleSheets', 'css');
+    const { children, styleSheets, css, ...props } = this.props;
     return <iframe {...props} onLoad={this.renderFrame} />;
   }
 }
 
-module.exports = Frame;
+export default Frame;
