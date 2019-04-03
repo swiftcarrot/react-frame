@@ -1,9 +1,10 @@
 {
   "name": "react-frame",
-  "version": "2.2.10",
+  "version": "2.2.11",
   "description": "React components within an iframe for isolated css styling",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
