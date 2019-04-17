@@ -12,10 +12,10 @@ class Frame extends Component {
     }
 
     const frame = ReactDOM.findDOMNode(this);
-    ReactDOM.render(
-      nextProps.children,
-      frame.contentDocument.getElementById('root')
-    );
+    const root = frame.contentDocument.getElementById('root');
+    if (root) {
+      ReactDOM.render(nextProps.children, root);
+    }
   }
 
   componentDidMount() {
