@@ -19,7 +19,7 @@ class Frame extends Component {
   }
 
   componentDidMount() {
-    setTimeout(this.renderFrame.bind(this), 0);
+    setTimeout(this.renderFrame, 0);
   }
 
   componentWillUnmount() {
@@ -28,7 +28,7 @@ class Frame extends Component {
     );
   }
 
-  updateStylesheets(styleSheets) {
+  updateStylesheets = styleSheets => {
     const links = this.head.querySelectorAll('link');
     for (let i = 0, l = links.length; i < l; i++) {
       const link = links[i];
@@ -44,9 +44,9 @@ class Frame extends Component {
         this.head.appendChild(link);
       });
     }
-  }
+  };
 
-  updateCss(css) {
+  updateCss = css => {
     if (!this.styleEl) {
       const el = document.createElement('style');
       el.type = 'text/css';
@@ -64,9 +64,9 @@ class Frame extends Component {
       el.appendChild(cssNode);
       this.cssNode = cssNode;
     }
-  }
+  };
 
-  renderFrame() {
+  renderFrame = () => {
     const { styleSheets, css } = this.props;
     const frame = ReactDOM.findDOMNode(this);
     const root = document.createElement('div');
@@ -83,7 +83,7 @@ class Frame extends Component {
     }, 0);
 
     ReactDOM.render(this._children, root);
-  }
+  };
 
   render() {
     this._children = this.props.children;
