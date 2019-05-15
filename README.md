@@ -17,7 +17,7 @@ yarn add react-frame
 
 ### Demo
 
-[https://pqx.github.io/react-frame](https://pqx.github.io/react-frame)
+[https://swiftcarrot.dev/react-frame](https://swiftcarrot.dev/react-frame)
 
 ### Usage
 
