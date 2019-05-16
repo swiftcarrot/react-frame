@@ -1,6 +1,6 @@
 {
   "name": "react-frame",
-  "version": "2.2.17",
+  "version": "2.2.18",
   "description": "React components within an iframe for isolated css styling",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -9,7 +9,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "NODE_ENV=production rollup -c",
+    "build": "rm -rf dist && NODE_ENV=production rollup -c",
     "test": "jest --coverage",
     "prepublishOnly": "npm test && npm run build"
   },
