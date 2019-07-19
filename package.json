@@ -1,6 +1,6 @@
 {
   "name": "react-frame",
-  "version": "2.2.19",
+  "version": "2.2.20",
   "description": "React components within an iframe for isolated css styling",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pqx/react-frame.git"
+    "url": "git+https://github.com/swiftcarrot/react-frame.git"
   },
   "keywords": [
     "iframe",
@@ -26,9 +26,9 @@
   "author": "Wang Zuo",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pqx/react-frame/issues"
+    "url": "https://github.com/swiftcarrot/react-frame/issues"
   },
-  "homepage": "https://github.com/pqx/react-frame#readme",
+  "homepage": "https://github.com/swiftcarrot/react-frame#readme",
   "peerDependencies": {
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
